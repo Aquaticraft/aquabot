@@ -6,6 +6,8 @@ const prefix = '!';
 
 const fs = require ('fs');
 
+const util = require('minecraft-server-util');
+
 client.commands = new discord.Collection();
  
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
@@ -27,7 +29,7 @@ client.on('message', message =>{
     const command = args.shift().toLowerCase();
 
     if(command === 'ping'){
-        client.commands.get('ping').execute(message, args);
+        client.commands.get('ping'). execute(message, args);
 
     } else if (command == 'twitch'){
         client.commands.get('twitch').execute(message, args);
@@ -35,18 +37,20 @@ client.on('message', message =>{
     } else if (command == 'commands'){
         client.commands.get('commands').execute(message, args);
 
-    } else if (command == 'vaultip'){
-        client.commands.get('vaultip').execute(message, args);
+    } else if (command == 'aquatech'){
+        client.commands.get('aquatech').execute(message, args, discord);
 
     } else if (command == 'patreon'){
-        client.commands.get('patreon').execute(message, args);
+        client.commands.get('patreon').execute(message, args, discord);
 
-    } else if (command == 'commands'){
-        client.commands.get('commands').execute(message, args);
+    } else if (command == 'testembed'){
+        client.commands.get('testembed').execute(message, args, discord);
 
-    }  else if (command == 'serverlist'){ 
-        client.commands.get('serverlist').execute(message, args);
+    } else if (command == 'serverlist'){
+        client.commands.get('serverlist').execute(message, args, discord);
 
+    } else if (command == 'interview'){
+        client.commands.get('interview').execute(message, args);
     }
 });
 
